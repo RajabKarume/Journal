@@ -1,0 +1,12 @@
+input{
+    height: 15vh;
+    width: 20vw;
+}
+button{
+    width: 5vw;
+    height: 3vh;
+    margin-top: 1%;
+    background-color: rgb(143, 143, 2);
+    font-size: 15px;
+    border-radius: 20px;
+}
