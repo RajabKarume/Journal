@@ -1,5 +1,6 @@
 import './App.css';
-import Input from './components/Mainpage/Input/Input';
+import Card from './components/Mainpage/Card/Card';
+// import Input from './components/Mainpage/Input/Input';
 // import NavBar from './components/Mainpage/Navbar/NavBar';
 // import LogIn from './components/Login/LogIn';
 
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       {/* <LogIn /> */}
       {/* <NavBar /> */}
-      <Input />
+      {/* <Input /> */}
+      <Card />
     </div>
   );
 }

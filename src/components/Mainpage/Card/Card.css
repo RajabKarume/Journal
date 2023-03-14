@@ -1,0 +1,17 @@
+.card-container{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid;
+    border-radius: 20px;
+    width: 40vw;
+}
+.post-div{
+    border-bottom: 1px solid;
+    padding: 2%;
+    font-size: 20px;
+    
+}
+.timestamp{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
