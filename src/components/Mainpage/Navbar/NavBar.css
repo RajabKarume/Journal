@@ -1,0 +1,20 @@
+.navbar-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8vh;
+    background-color: #9e0101;
+}
+.appname{
+    margin-left: 2%;
+}
+.logout-button{
+    margin-right: 2%;
+}
+button{
+    height: 5vh;
+    width: 10vw;
+    font-size: 20px;
+    background-color: rgb(143, 143, 2);
+    cursor: pointer;
+}
