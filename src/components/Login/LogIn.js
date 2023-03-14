@@ -15,10 +15,9 @@ function LogIn(){
                         <input type="email" placeholder='Enter your email address' />.
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' />
+                        <br/>
+                        <button>Log In</button>
                     </form>
-                </div>
-                <div className='button-div'>
-                    <button>Log In</button>
                 </div>
                 <div className='span-div'>
                     <span>Sign Up</span>

@@ -13,6 +13,7 @@
     height: 70vh;
     width: 20vw;
     background-color: #9e0101;
+    border-radius: 30px;
 }
 .login-h1{
     width: 70%;
@@ -21,20 +22,19 @@
     text-align: start;
     margin-top: 10%;
 }
-.button-div{
-    margin-top: 10%;
-}
+
 .span-div{
     margin-top: 20%;
     border-bottom: 1px solid;
     cursor: pointer;
 }
 button{
-    width: 7vw;
+    width: 11vw;
     height: 3vh;
     background-color: rgb(143, 143, 2);
     border-radius: 30px;
     cursor: pointer;
+    margin-top: 10%;
 }
 input{
     height: 3vh;
