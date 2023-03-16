@@ -36,9 +36,10 @@ button{
     cursor: pointer;
     margin-top: 10%;
 }
-input{
+.login-input{
     height: 3vh;
     width: 10vw;
     border-radius: 20px;
     text-align: center;
+    border-bottom: 1px solid ;
 }

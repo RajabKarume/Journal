@@ -7,7 +7,7 @@ function Input(){
         <div>
             <form>
                 <h2>Journal entry</h2>
-                <input type='text' placeholder="Enter your Journal " />
+                <input type='text' placeholder="Enter your Journal " className="message-input" />
             </form>
             <button>Send</button>
         </div>
