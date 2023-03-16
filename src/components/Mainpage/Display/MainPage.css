@@ -1,0 +1,16 @@
+.mainpage{
+    display: flex;
+    flex-direction: column;
+    
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input{
+    padding-top: 2%;
+}
+.card{
+    padding-top: 2%;
+}
