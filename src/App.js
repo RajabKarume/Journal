@@ -1,6 +1,6 @@
 import './App.css';
-import SignUp from './components/Login/SignUp';
-// import MainPage from './components/Mainpage/Display/MainPage';
+// import SignUp from './components/Login/SignUp';
+import MainPage from './components/Mainpage/Display/MainPage';
 // import Card from './components/Mainpage/Card/Card';
 // import Input from './components/Mainpage/Input/Input';
 // import NavBar from './components/Mainpage/Navbar/NavBar';
@@ -13,8 +13,8 @@ function App() {
       {/* <NavBar /> */}
       {/* <Input /> */}
       {/* <Card /> */}
-      {/* <MainPage /> */}
-      <SignUp />
+      <MainPage />
+      {/* <SignUp /> */}
     </div>
   );
 }
