@@ -9,12 +9,14 @@ import { auth } from "../../../firebaseConfig";
 function MainPage(){
 
     const [userAuth, setUserAuth] = useState(null)
-    // const [name, setName] = useState("")
+    const [name, setName] = useState("")
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
                 setUserAuth(user)
-                
+                if (user){
+                    setName(user.displayName)
+                }
            
         })
         
@@ -25,7 +27,7 @@ function MainPage(){
 
     return(
         <div className="mainpage">
-            <NavBar  />
+            <NavBar name={name} />
             <div className="display">
                 <div className="input">
                     <Input />

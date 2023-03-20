@@ -1,19 +1,16 @@
 import { signOut } from "firebase/auth";
-import React, { useState } from "react";
+import React from "react";
 import { auth } from "../../../firebaseConfig";
-import LogIn from "../../Login/LogIn";
 import './NavBar.css'
 import {  useNavigate } from "react-router-dom";
 
 function NavBar({name}){
 
-    const [signOutUser, setSignOutUser] = useState(false)
     const navigate = useNavigate()
 
     const userSignOut = () => {
         try{
         signOut(auth).then(()=>{
-            setSignOutUser(true)
             navigate('/')
             console.log('signed out')
         })
@@ -21,12 +18,7 @@ function NavBar({name}){
             console.log("signout error")
         }
     }
-    if (signOutUser===true){
-        return(
-            < LogIn />
-        )
-        
-    }
+    
     return(
         <div className="navbar-div">
             <div className="appname">

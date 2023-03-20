@@ -1,6 +1,6 @@
 import './LogIn.css'
 import React, { useState } from 'react'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db} from '../../firebaseConfig';
 // import { async } from '@firebase/util';
 import { doc, setDoc } from "firebase/firestore"; 
@@ -27,6 +27,9 @@ function SignUp(){
                 console.log(res.user.uid)
                 console.log(displayName)
                 console.log(email)
+                updateProfile(res.user,{
+                    displayName
+                })
                 
                 setDoc(doc(db, "users", res.user.uid),{
                     uid: res.user.uid,
@@ -35,7 +38,7 @@ function SignUp(){
                 })
                 console.log("db done")
                 setSignup(!signup)
-                navigate('/')
+                navigate('/login')
 
             } catch(err){
                 console.log("db error")
@@ -74,7 +77,7 @@ function SignUp(){
                     </form>
                 </div>
                 <div className='span-div'>
-                    <span > <Link to='/'>LogIn to your account</Link> </span>
+                    <span > <Link to='/login'>LogIn to your account</Link> </span>
                 </div>
                 
             </div>

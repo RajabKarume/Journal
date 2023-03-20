@@ -19,7 +19,7 @@ function LogIn(){
         try{
             await signInWithEmailAndPassword(auth, email, password)
             console.log("login successful")
-            navigate("/home")
+            navigate("/")
             setLogin(!login)
             
             
