@@ -4,8 +4,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db} from '../../firebaseConfig';
 // import { async } from '@firebase/util';
 import { doc, setDoc } from "firebase/firestore"; 
-import { Link } from 'react-router-dom';
-import LogIn from './LogIn';
+import { Link, useNavigate } from 'react-router-dom';
+// import LogIn from './LogIn';
 
 
 function SignUp(){
@@ -15,6 +15,7 @@ function SignUp(){
     const [displayName, setDisplayName] = useState("")
     const [err, setErr] = useState(false)
     const [signup, setSignup] = useState(false)
+    const navigate = useNavigate()
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
@@ -34,7 +35,7 @@ function SignUp(){
                 })
                 console.log("db done")
                 setSignup(!signup)
-                
+                navigate('/')
 
             } catch(err){
                 console.log("db error")
@@ -43,15 +44,14 @@ function SignUp(){
             setErr(true)
             console.log("error")
         }
-        return(
-            <Link to='/login' />
-        )  
+        
     }
-    if (signup===true){
-        return(
-            <LogIn/>
-        )
-    }
+    // if (signup===true){
+    //     return(
+    //         <LogIn/>
+    //     )
+    // }
+    console.log(signup)
 
     return(
         <div className='main-div'> 
@@ -68,13 +68,13 @@ function SignUp(){
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' value={password} onChange={(e)=> setPassword(e.target.value)} className='login-input' />
                         <br/>
-                        <button>Log In</button>
+                        <button className='login-button'>Log In</button>
                         <br/>
-                        {err? <span>something went wrong</span>: <p></p>}
+                        {err? <p>Sign error </p>: <p></p>}
                     </form>
                 </div>
                 <div className='span-div'>
-                    <span > <Link to='/login'>LogIn to your account</Link> </span>
+                    <span > <Link to='/'>LogIn to your account</Link> </span>
                 </div>
                 
             </div>

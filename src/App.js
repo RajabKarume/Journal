@@ -5,21 +5,30 @@ import MainPage from './components/Mainpage/Display/MainPage';
 // import Input from './components/Mainpage/Input/Input';
 // import NavBar from './components/Mainpage/Navbar/NavBar';
 import LogIn from './components/Login/LogIn';
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from './components/Auth/WithAuth';
+
+
 function App() {
+
+  const {currentUser} = useContext(AuthContext)
+
+  const ProtectedRoute = ({children}) => {
+    if (!currentUser){
+      return (
+        <Navigate to='/' />
+      )
+    }
+    return children
+  }
   return (
     <div className="App">
-      {/* <LogIn /> */}
-      {/* <NavBar /> */}
-      {/* <Input /> */}
-      {/* <Card /> */}
-      {/* <MainPage /> */}
-      {/* <SignUp /> */}
       <BrowserRouter>
         <Routes>
-          <Route path={"/"} element={<MainPage/>}  />
-          <Route path={"/login"} element={<LogIn/>}  />
+          <Route path={"/"} element={<LogIn/>}  />
           <Route path={"/signup"} element={<SignUp/>}  />
+          <Route path={'/home'} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
       
