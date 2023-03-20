@@ -16,3 +16,8 @@
     padding-top: 2%;
     padding-bottom: 2%;
 }
+@media(max-width:1000px){
+    .card-container{
+        width: 80vw;
+    }
+}
