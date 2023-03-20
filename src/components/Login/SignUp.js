@@ -2,10 +2,8 @@ import './LogIn.css'
 import React, { useState } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db} from '../../firebaseConfig';
-// import { async } from '@firebase/util';
 import { doc, setDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom';
-// import LogIn from './LogIn';
 
 
 function SignUp(){
@@ -14,7 +12,6 @@ function SignUp(){
     const [password, setPassword] = useState("")
     const [displayName, setDisplayName] = useState("")
     const [err, setErr] = useState(false)
-    const [signup, setSignup] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = async (e)=> {
@@ -37,7 +34,6 @@ function SignUp(){
                     displayName
                 })
                 console.log("db done")
-                setSignup(!signup)
                 navigate('/login')
 
             } catch(err){
@@ -48,13 +44,7 @@ function SignUp(){
             console.log("error")
         }
         
-    }
-    // if (signup===true){
-    //     return(
-    //         <LogIn/>
-    //     )
-    // }
-    console.log(signup)
+    } 
 
     return(
         <div className='main-div'> 
@@ -71,7 +61,7 @@ function SignUp(){
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' value={password} onChange={(e)=> setPassword(e.target.value)} className='login-input' />
                         <br/>
-                        <button className='login-button'>Log In</button>
+                        <button className='login-button'>Sign Up</button>
                         <br/>
                         {err? <p>Sign error </p>: <p></p>}
                     </form>
