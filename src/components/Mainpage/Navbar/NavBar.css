@@ -18,3 +18,16 @@ button{
     background-color: rgb(143, 143, 2);
     cursor: pointer;
 }
+@media(max-width:1000px){
+    .navbar-div{
+        font-size: 10px;
+    }
+    .logout-button{
+        width: 22%;
+    }
+    button{
+        width: 100%;
+        border-radius: 40px;
+        font-size: 15px;
+    }
+}
