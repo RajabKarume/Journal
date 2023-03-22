@@ -5,6 +5,7 @@ import Input from "../Input/Input";
 import Card from "../Card/Card";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
+import Clock from "../Clock/Clock";
 
 function MainPage(){
 
@@ -29,6 +30,9 @@ function MainPage(){
         <div className="mainpage">
             <NavBar name={name} />
             <div className="display">
+                <div className="clock-display">
+                    <Clock />
+                </div>
                 <div className="input">
                     <Input />
                 </div>
