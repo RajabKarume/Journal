@@ -15,25 +15,23 @@ function LogIn(){
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
+        setLogin(true)
+
 
         try{
             await signInWithEmailAndPassword(auth, email, password)
             console.log("login successful")
             navigate("/")
-            setLogin(!login)
             
             
         } catch(err){
             console.log("login error")
             setErr(true)
         }
+        setLogin(false)
          
     }
 
-    // if (login === true){
-    //     return(
-    //     <MainPage/>
-    // )}
 
     return(
         <div className='main-div'> 
@@ -48,7 +46,7 @@ function LogIn(){
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' className='login-input' value={password} onChange={(e)=>setPassword(e.target.value)} />
                         <br/>
-                        <button className='login-button'>Log In</button>
+                        <button className='login-button'>{login?"Loging In": "Log In"} </button>
                     </form>
                 </div>
                 <div>
