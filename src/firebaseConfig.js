@@ -17,6 +17,8 @@ const firebaseConfig = {
   appId: "1:708981751746:web:e2ffb216b3e198e40be05b"
 };
 
+// const nodemailer = require('nodemailer')
+
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth()

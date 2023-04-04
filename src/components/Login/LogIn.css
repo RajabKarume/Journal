@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: #9e0101;
+    background-color: #ffffff;
 
 }
 .login-container{
@@ -16,6 +16,8 @@
     width: 20vw;
     border-radius: 30px;
     background-color: #ffffff;
+    box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+    5px 5px 9px rgba(94, 104, 121, 0.3);
 }
 .login-h1{
     width: 70%;
@@ -23,6 +25,12 @@
 .form-div{
     text-align: start;
     margin-top: 10%;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: -0.4rem;
+    margin-bottom: 35px;
+    color: #000;
 }
 
 .span-div{
@@ -39,11 +47,17 @@
     margin-top: 10%;
 }
 .login-input{
-    height: 3vh;
-    width: 10vw;
-    border-radius: 20px;
-    text-align: center;
-    border-bottom: 1px solid ;
+    height: 100%;
+    width: 100%;
+    padding-left: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: #595959;
+    background: #dde1e7;
+    border-radius: 25px;
+    box-shadow: inset -4px -4px 5px rgba(255, 255, 255, 0.5),
+      inset 3px 3px 5px rgba(94, 104, 121, 0.4);
 }
 @media (max-width:1000px){
     .main-div{

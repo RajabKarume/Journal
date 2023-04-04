@@ -3,6 +3,7 @@ import './Input.css'
 import { AuthContext } from "../../Auth/WithAuth";
 import { setDoc, doc, getDoc,  getDocs, collection } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
+import SendEmail from "../SendEmail/SendEmail";
 // import { query } from "firebase/database";
 
 function Input(){
@@ -13,6 +14,9 @@ function Input(){
     const [allDocs, setAllDocs] = useState([])
     const entryCollection = collection(db, 'entries')
     const [myEntries, setMyEntries] = useState([])
+    const [sendMail, setSendMail] = useState(false)
+
+
     const handleSubmit = async(e) =>{
         e.preventDefault()
         const newEntry = [...entry].join("")
@@ -34,7 +38,7 @@ function Input(){
             })
             console.log("success")
 
-            
+            setSendMail(true)
 
         } catch{
             console.log("Error adding entry")
@@ -45,6 +49,8 @@ function Input(){
         setSend(false)
 
     }
+
+
     useEffect(()=>{
         const getEntries = async ()=> {
             const data = await getDocs(entryCollection)
@@ -59,6 +65,9 @@ function Input(){
         getMyEntries()
 
     },[])
+
+
+
     console.log(allDocs)
 
     const otherUsers = allDocs.filter((alldoc)=>(alldoc.email !== currentUser.email))
@@ -76,6 +85,12 @@ function Input(){
                 <br/>
                 <button  className="send-button">{send?"Sending":'Send'}</button>
             </form>
+                <SendEmail 
+                sendMail={sendMail}
+                setSendMail={setSendMail} 
+                myEntries={myEntries} 
+                otherEmails={otherEmails}
+                />
         </div>
     )
 }
