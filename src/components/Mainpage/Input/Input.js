@@ -18,35 +18,39 @@ function Input(){
 
 
     const handleSubmit = async(e) =>{
-        e.preventDefault()
-        const newEntry = [...entry].join("")
-        setSend(true)
+        if (entry !==''){
+            e.preventDefault()
+            const newEntry = [...entry].join("")
+            setSend(true)
 
-        try{
+            try{
 
-            const entryRef = doc(db, 'entries', currentUser.uid);
-            const entryDoc = await getDoc(entryRef);
-            console.log(entryDoc)
-            let existingEntries = entryDoc.exists() ? entryDoc.data().newEntry : [];
+                const entryRef = doc(db, 'entries', currentUser.uid);
+                const entryDoc = await getDoc(entryRef);
+                console.log(entryDoc)
+                let existingEntries = entryDoc.exists() ? entryDoc.data().newEntry : [];
 
-            existingEntries.push(newEntry);
+                existingEntries.push(newEntry);
 
 
-            await setDoc(doc(db,'entries', currentUser.uid),{
-                email:currentUser.email,
-                newEntry: existingEntries,
-            })
-            console.log("success")
+                await setDoc(doc(db,'entries', currentUser.uid),{
+                    email:currentUser.email,
+                    newEntry: existingEntries,
+                })
+                console.log("success")
 
-            setSendMail(true)
+                setSendMail(true)
 
-        } catch{
-            console.log("Error adding entry")
-            
+            } catch{
+                console.log("Error adding entry")
+                
+            }
+            e.target.reset()
+            setEntry('')
+            setSend(false)
+        }else{
+            alert('Entry cannot be blank')
         }
-        e.target.reset()
-        setEntry('')
-        setSend(false)
 
     }
 

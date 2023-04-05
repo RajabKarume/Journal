@@ -26,6 +26,7 @@ function SendEmail({otherEmails, myEntries, sendMail, setSendMail}){
             <div className="popup-container">
               <p>Entry submited successfully</p>
             </div>
+            <button onClick={()=>setSendMail(false)}>OK</button>
         </div>
     ):''
 }

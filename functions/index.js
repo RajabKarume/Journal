@@ -21,10 +21,10 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendEmail = functions.firestore
-    .document(`entries/{userId}`)
+    .document(`entries/{entryId}`)
     .onCreate((snap, context)=>{
       const mailOption = {
-        from: `myJournal@noreply.com`,
+        from: process.env.REACT_APP_EMAIL,
         to: snap.data().email,
         subject: `entries`,
         html: `<p>${snap.data().newEntry}</p>`,
