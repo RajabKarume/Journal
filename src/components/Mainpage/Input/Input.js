@@ -5,10 +5,7 @@ import { setDoc, doc, getDoc,  getDocs, collection } from "firebase/firestore";
 import { db,  } from "../../../firebaseConfig.js";
 import SendEmail from "../SendEmail/SendEmail";
 import 'firebase/functions'
-// import firebase from "firebase/compat/app"
 import { getFunctions, httpsCallable } from "firebase/functions";
-
-
 
 function Input(){
 
@@ -20,7 +17,6 @@ function Input(){
     const [myEntries, setMyEntries] = useState([])
     const [sendMail, setSendMail] = useState(false)
     const functions = getFunctions();
-
 
     const handleSubmit = async(e) =>{
         if (entry !==''){
@@ -59,7 +55,6 @@ function Input(){
 
     }
 
-
     useEffect(()=>{
         const getEntries = async ()=> {
             const data = await getDocs(entryCollection)
@@ -90,14 +85,6 @@ function Input(){
 
         return () => clearInterval(interval);
     },[])
-
-    // console.log(allDocs)
-
-   
-    // console.log(otherEmails)
-    // console.log(myEntries)
-    
-
 
     return(
         <div className="input-div">

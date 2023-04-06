@@ -6,13 +6,11 @@ import Card from "../Card/Card";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import Clock from "../Clock/Clock";
-// import { onSnapshot } from "firebase/firestore";
 
 function MainPage(){
 
     const [userAuth, setUserAuth] = useState(null)
     const [name, setName] = useState("")
-    // const [entry, setEntry] = useState([])
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
@@ -22,15 +20,8 @@ function MainPage(){
                 }
            
         })
-        
+        console.log(userAuth)
     },[])
-
-    console.log(userAuth)
-    // useEffect(()=>{
-    //     db.collection("entries").onSnapshot(snapshot =>{
-    //         setEntry(snapshot.docs.map(doc => ({id:doc.id, entries:doc.data().newEntry})))
-    //     })
-    // },[])
 
     return(
         <div className="mainpage">

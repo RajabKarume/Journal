@@ -1,9 +1,5 @@
 import React from "react";
 import './SendEmail.css'
-// import 'node-libs-browser';
-// import nodemailer from 'nodemailer';
-// import { Mailer } from 'nodemailer-react'
-
 
 function SendEmail({ sendMail, setSendMail}){
 

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebaseConfig';
-// import MainPage from '../Mainpage/Display/MainPage';
 
 function LogIn(){
     
@@ -31,7 +30,6 @@ function LogIn(){
         setLogin(false)
          
     }
-
 
     return(
         <div className='main-div'> 

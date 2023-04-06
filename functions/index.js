@@ -1,15 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-
-
 admin.initializeApp();
 const nodemailer = require("nodemailer");
-// const { error } = require("firebase-functions/logger");
-
 // // Create and deploy your first functions
 // // https://firebase.google.com/docs/functions/get-started
 //
-
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -19,11 +14,9 @@ const transporter = nodemailer.createTransport({
     pass: "reughtpfbzlfwjnz",
   },
 });
-
 exports.sendEmail = functions.https.onCall((data)=>{
   const message = data.message;
   const email = data.email;
-  // const userId = data.auth.uid;
   const mailOption = {
     from: "dev.tests.karume@gmail.com",
     to: email,
@@ -37,11 +30,7 @@ exports.sendEmail = functions.https.onCall((data)=>{
     }
     console.log("Sent");
   });
-  // const message = data.message;
-  // const email = data.email;
-  // return {message, email};
 });
-
 exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
