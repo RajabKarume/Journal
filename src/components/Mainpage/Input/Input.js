@@ -19,13 +19,14 @@ function Input(){
     const functions = getFunctions();
 
     const handleSubmit = async(e) =>{
+        // Prevent blank entries
         if (entry !==''){
             e.preventDefault()
             const newEntry = [...entry].join("")
             setSend(true)
 
             try{
-
+                // check if the collection exists
                 const entryRef = doc(db, 'entries', currentUser.uid);
                 const entryDoc = await getDoc(entryRef);
                 console.log(entryDoc)
@@ -33,7 +34,7 @@ function Input(){
 
                 existingEntries.push(newEntry);
 
-
+                // add data to entries database
                 await setDoc(doc(db,'entries', currentUser.uid),{
                     email:currentUser.email,
                     newEntry: existingEntries,
@@ -56,6 +57,7 @@ function Input(){
     }
 
     useEffect(()=>{
+        // fetching data from entry
         const getEntries = async ()=> {
             const data = await getDocs(entryCollection)
             setAllDocs(data.docs.map((doc)=>({...doc.data(), id:doc.id})))
@@ -73,6 +75,7 @@ function Input(){
         console.log(otherEmails)
         console.log(allDocs)
 
+        // Set time when emails will be sent
         const interval = setInterval(() => {
             const date = new Date();
             if (date.getHours() === 0 && date.getMinutes() === 0) {

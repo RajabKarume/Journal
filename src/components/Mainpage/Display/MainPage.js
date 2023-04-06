@@ -12,6 +12,7 @@ function MainPage(){
     const [userAuth, setUserAuth] = useState(null)
     const [name, setName] = useState("")
 
+    //Getting user's name
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
                 setUserAuth(user)
