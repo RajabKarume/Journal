@@ -1,7 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+// import firebase from "firebase/compat/app"
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import 'firebase/functions'
+// import { getFunctions, httpsCallable } from "firebase/functions";
+
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,9 +21,10 @@ const firebaseConfig = {
   appId: "1:708981751746:web:e2ffb216b3e198e40be05b"
 };
 
-// const nodemailer = require('nodemailer')
+// const functions = getFunctions()
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth()
 export const db = getFirestore()
+// export const myFunction = httpsCallable( functions ,'myFunction'); myFunction({})

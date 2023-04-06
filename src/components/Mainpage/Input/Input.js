@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import './Input.css'
 import { AuthContext } from "../../Auth/WithAuth";
 import { setDoc, doc, getDoc,  getDocs, collection } from "firebase/firestore";
-import { db } from "../../../firebaseConfig";
+import { db,  } from "../../../firebaseConfig.js";
 import SendEmail from "../SendEmail/SendEmail";
-// import { query } from "firebase/database";
+import 'firebase/functions'
+// import firebase from "firebase/compat/app"
+import { getFunctions, httpsCallable } from "firebase/functions";
+
+
 
 function Input(){
 
@@ -15,6 +19,7 @@ function Input(){
     const entryCollection = collection(db, 'entries')
     const [myEntries, setMyEntries] = useState([])
     const [sendMail, setSendMail] = useState(false)
+    const functions = getFunctions();
 
 
     const handleSubmit = async(e) =>{
@@ -67,18 +72,44 @@ function Input(){
             setMyEntries(data.data().newEntry)
         }
         getMyEntries()
+        const otherUsers = allDocs.filter((alldoc)=>(alldoc.email !== currentUser.email))
+
+        const otherEmails = otherUsers.map((otherUser)=>(otherUser.email))
+        console.log(otherEmails)
+        const sendEmail = httpsCallable(functions, "sendEmail");
+                sendEmail({email : otherEmails, message: myEntries}).then(result =>{
+                console.log(result)
+                })
+        
+        // const sendEmail = async ()=> {
+        //     try{
+        //         const result = await myFunction({
+        //             message: myEntries,
+        //             email: otherEmails
+        //         })
+        //         console.log(result.data)
+        //     } catch{
+        //         console.log("Theres an error sending functions")
+        //     }
+        // }
+        // sendEmail()
+        
+        // .catch((error) => {
+        //     // Getting the Error details.
+        //     const code = error.code;
+        //     const message = error.message;
+        //     const details = error.details;
+        //     // ...
+        //   });
 
     },[])
 
+    // console.log(allDocs)
 
-
-    console.log(allDocs)
-
-    const otherUsers = allDocs.filter((alldoc)=>(alldoc.email !== currentUser.email))
-
-    const otherEmails = otherUsers.map((otherUser)=>(otherUser.email))
-    console.log(otherEmails)
-    console.log(myEntries)
+   
+    // console.log(otherEmails)
+    // console.log(myEntries)
+    
 
 
     return(
@@ -90,11 +121,10 @@ function Input(){
                 <button  className="send-button">{send?"Sending":'Send'}</button>
             </form>
                 <SendEmail 
-                sendMail={sendMail}
                 setSendMail={setSendMail} 
-                myEntries={myEntries} 
-                otherEmails={otherEmails}
+                sendMail={sendMail}
                 />
+                
         </div>
     )
 }

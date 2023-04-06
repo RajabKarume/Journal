@@ -15,28 +15,32 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: process.env.REACT_APP_EMAIL,
-    pass: process.env.REACT_APP_PASSWORD,
+    user: "dev.tests.karume@gmail.com",
+    pass: "reughtpfbzlfwjnz",
   },
 });
 
-exports.sendEmail = functions.firestore
-    .document(`entries/{entryId}`)
-    .onCreate((snap, context)=>{
-      const mailOption = {
-        from: process.env.REACT_APP_EMAIL,
-        to: snap.data().email,
-        subject: `entries`,
-        html: `<p>${snap.data().newEntry}</p>`,
-      };
-      return transporter.sendMail(mailOption, (error, data)=>{
-        if (error) {
-          console.log(error);
-          return;
-        }
-        console.log("Sent");
-      });
-    });
+exports.sendEmail = functions.https.onCall((data)=>{
+  const message = data.message;
+  const email = data.email;
+  // const userId = data.auth.uid;
+  const mailOption = {
+    from: "dev.tests.karume@gmail.com",
+    to: email,
+    subject: `entries`,
+    html: `<p>${message}</p>`,
+  };
+  return transporter.sendMail(mailOption, (error, data)=>{
+    if (error) {
+      console.log(error);
+      return;
+    }
+    console.log("Sent");
+  });
+  // const message = data.message;
+  // const email = data.email;
+  // return {message, email};
+});
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});

@@ -4,7 +4,7 @@ import NavBar from '../Navbar/NavBar'
 import Input from "../Input/Input";
 import Card from "../Card/Card";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../../../firebaseConfig";
+import { auth } from "../../../firebaseConfig";
 import Clock from "../Clock/Clock";
 // import { onSnapshot } from "firebase/firestore";
 
