@@ -76,32 +76,19 @@ function Input(){
 
         const otherEmails = otherUsers.map((otherUser)=>(otherUser.email))
         console.log(otherEmails)
-        const sendEmail = httpsCallable(functions, "sendEmail");
+        console.log(allDocs)
+
+        const interval = setInterval(() => {
+            const date = new Date();
+            if (date.getHours() === 0 && date.getMinutes() === 0) {
+                const sendEmail = httpsCallable(functions, "sendEmail");
                 sendEmail({email : otherEmails, message: myEntries}).then(result =>{
                 console.log(result)
                 })
-        
-        // const sendEmail = async ()=> {
-        //     try{
-        //         const result = await myFunction({
-        //             message: myEntries,
-        //             email: otherEmails
-        //         })
-        //         console.log(result.data)
-        //     } catch{
-        //         console.log("Theres an error sending functions")
-        //     }
-        // }
-        // sendEmail()
-        
-        // .catch((error) => {
-        //     // Getting the Error details.
-        //     const code = error.code;
-        //     const message = error.message;
-        //     const details = error.details;
-        //     // ...
-        //   });
+            }
+        }, 60000); 
 
+        return () => clearInterval(interval);
     },[])
 
     // console.log(allDocs)
