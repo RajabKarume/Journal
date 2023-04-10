@@ -53,7 +53,6 @@ function Input(){
         }else{
             alert('Entry cannot be blank')
         }
-
     }
 
     useEffect(()=>{
@@ -70,15 +69,14 @@ function Input(){
         }
         getMyEntries()
         const otherUsers = allDocs.filter((alldoc)=>(alldoc.email !== currentUser.email))
-
         const otherEmails = otherUsers.map((otherUser)=>(otherUser.email))
-        console.log(otherEmails)
-        console.log(allDocs)
+        //
+
 
         // Set time when emails will be sent
         const interval = setInterval(() => {
             const date = new Date();
-            if (date.getHours() === 0 && date.getMinutes() === 0) {
+            if (date.getHours() === 13 && date.getMinutes() === 37) {
                 const sendEmail = httpsCallable(functions, "sendEmail");
                 sendEmail({email : otherEmails, message: myEntries}).then(result =>{
                 console.log(result)
@@ -89,6 +87,10 @@ function Input(){
         return () => clearInterval(interval);
     },[])
 
+    // console.log(allDocs)
+    // console.log(otherEmails)
+    // console.log(myEntries)
+    // console.log(otherUsers)
     return(
         <div className="input-div">
             <form onSubmit={handleSubmit}>
