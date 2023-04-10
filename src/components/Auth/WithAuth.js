@@ -4,6 +4,8 @@ import { auth } from "../../firebaseConfig";
 
 export const AuthContext = createContext()
 
+// This ensures users can't view homepage without proper login
+
 export const AuthContextProvider = ({children}) =>{
     const [currentUser, setCurrentUser] = useState({})
 

@@ -5,12 +5,14 @@ import Input from "../Input/Input";
 import Card from "../Card/Card";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
+import Clock from "../Clock/Clock";
 
 function MainPage(){
 
     const [userAuth, setUserAuth] = useState(null)
     const [name, setName] = useState("")
 
+    //Getting user's name
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
                 setUserAuth(user)
@@ -19,16 +21,16 @@ function MainPage(){
                 }
            
         })
-        
+        console.log(userAuth)
     },[])
-
-    console.log(userAuth)
-
 
     return(
         <div className="mainpage">
             <NavBar name={name} />
             <div className="display">
+                <div className="clock-display">
+                    <Clock />
+                </div>
                 <div className="input">
                     <Input />
                 </div>

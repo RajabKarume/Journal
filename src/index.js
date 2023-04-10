@@ -5,7 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './components/Auth/WithAuth';
 
+// const nodemailer = require('nodemailer')
 const root = ReactDOM.createRoot(document.getElementById('root'));
+  
 root.render(
   <AuthContextProvider>
     <React.StrictMode>

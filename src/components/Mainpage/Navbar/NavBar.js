@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { auth } from "../../../firebaseConfig";
 import './NavBar.css'
 import {  useNavigate } from "react-router-dom";
@@ -7,8 +7,10 @@ import {  useNavigate } from "react-router-dom";
 function NavBar({name}){
 
     const navigate = useNavigate()
+    const [logout, setLogout] = useState(false)
 
     const userSignOut = () => {
+        setLogout(true)
         try{
         signOut(auth).then(()=>{
             navigate('/')
@@ -17,6 +19,7 @@ function NavBar({name}){
         } catch{
             console.log("signout error")
         }
+        setLogout(false)
     }
     
     return(
@@ -28,7 +31,7 @@ function NavBar({name}){
                 <h1>{name}</h1>
             </div>
             <div className="logout-button">
-                <button onClick={userSignOut}>Log Out</button>
+                <button onClick={userSignOut}>{logout?"Logging Out": "LogOut"}</button>
             </div>
         </div>
     )

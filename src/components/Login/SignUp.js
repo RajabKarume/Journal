@@ -13,9 +13,11 @@ function SignUp(){
     const [displayName, setDisplayName] = useState("")
     const [err, setErr] = useState(false)
     const navigate = useNavigate()
+    const [signUpButton, setSignUpButton] = useState(false)
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
+        setSignUpButton(true)
         
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password)
@@ -43,7 +45,7 @@ function SignUp(){
             setErr(true)
             console.log("error")
         }
-        
+        setSignUpButton(false)
     } 
 
     return(
@@ -61,7 +63,7 @@ function SignUp(){
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' value={password} onChange={(e)=> setPassword(e.target.value)} className='login-input' />
                         <br/>
-                        <button className='login-button'>Sign Up</button>
+                        <button className='login-button'>{signUpButton?"Signing up":"Sign up"} </button>
                         <br/>
                         {err? <p>Sign error </p>: <p></p>}
                     </form>
