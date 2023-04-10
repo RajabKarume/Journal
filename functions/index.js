@@ -35,3 +35,27 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+exports.deleteCollection = functions.pubsub.schedule("every day 00:00")
+    .onRun(async (context) => {
+      const collectionRef = admin.firestore().collection("entries");
+      const batchSize = 500;
+      try {
+        const query = collectionRef.orderBy("__name__").limit(batchSize);
+        let snapshot = await query.get();
+
+        while (snapshot.size > 0) {
+          const batch = admin.firestore().batch();
+          snapshot.docs.forEach((doc) => {
+            batch.delete(doc.ref);
+          });
+
+          await batch.commit();
+          snapshot = await query.get();
+        }
+
+        console.log("All documents deleted");
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
