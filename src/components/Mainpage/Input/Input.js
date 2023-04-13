@@ -17,6 +17,7 @@ function Input(){
     const [myEntries, setMyEntries] = useState([])
     const [sendMail, setSendMail] = useState(false)
     const functions = getFunctions();
+    const email = currentUser.email
 
     const handleSubmit = async(e) =>{
         // Prevent blank entries
@@ -26,21 +27,31 @@ function Input(){
             setSend(true)
 
             try{
-                // check if the collection exists
-                const entryRef = doc(db, 'entries', currentUser.uid);
-                const entryDoc = await getDoc(entryRef);
-                console.log(entryDoc)
-                let existingEntries = entryDoc.exists() ? entryDoc.data().newEntry : [];
+                // // check if the collection exists
+                // const entryRef = doc(db, 'entries', currentUser.uid);
+                // const entryDoc = await getDoc(entryRef);
+                // console.log(entryDoc)
+                // let existingEntries = entryDoc.exists() ? entryDoc.data().newEntry : [];
 
-                existingEntries.push(newEntry);
+                // existingEntries.push(newEntry);
 
-                // add data to entries database
-                await setDoc(doc(db,'entries', currentUser.uid),{
-                    email:currentUser.email,
-                    newEntry: existingEntries,
-                })
-                console.log("success")
-
+                // // add data to entries database
+                // await setDoc(doc(db,'entries', currentUser.uid),{
+                //     email:currentUser.email,
+                //     newEntry: existingEntries,
+                // })
+                // console.log("success")
+                const response = await fetch("https://us-central1-journal-6a69e.cloudfunctions.net/addEntries", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, newEntry})
+                  });
+              
+                  const { id } = await response.json();
+                  console.log("New entry added with ID:", id);
+                
                 setSendMail(true)
 
             } catch{
@@ -85,7 +96,7 @@ function Input(){
         }, 60000); 
 
         return () => clearInterval(interval);
-    },[])
+    },[allDocs])
 
     // console.log(allDocs)
     // console.log(otherEmails)

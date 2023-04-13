@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
 const nodemailer = require("nodemailer");
+const cors = require("cors")({origin: true});
+
 // // Create and deploy your first functions
 // // https://firebase.google.com/docs/functions/get-started
 //
@@ -13,6 +15,22 @@ const transporter = nodemailer.createTransport({
     user: "dev.tests.karume@gmail.com",
     pass: "reughtpfbzlfwjnz",
   },
+});
+exports.addEntries = functions.https.onRequest(async (req, res) =>{
+  cors(req, res, async () => {
+    try {
+      // Get the data from the request body
+      const {email, newEntry} = req.body;
+      const entriesRef = admin.firestore().collection("entries");
+      const newEntryRef = await entriesRef.add({email, newEntry});
+
+      // Send a response with the ID of the new document
+      res.send({id: newEntryRef.id});
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error adding entry to Firestore");
+    }
+  });
 });
 exports.sendEmail = functions.https.onCall((data)=>{
   const message = data.message;
@@ -35,6 +53,15 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+exports.getEntries = functions.pubsub.schedule("every day 23:00")
+    .onRun( async (context) => {
+      const entrieRef = admin.firestore().collection("entries");
+      const entriesSnapshot = await entrieRef.get();
+      console.log(entriesSnapshot.size);
+      const entries = entriesSnapshot.docs.map((doc) => (
+        doc.data()));
+      console.log(entries);
+    });
 exports.deleteCollection = functions.pubsub.schedule("every day 00:00")
     .onRun(async (context) => {
       const collectionRef = admin.firestore().collection("entries");
