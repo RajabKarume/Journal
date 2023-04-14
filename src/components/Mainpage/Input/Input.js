@@ -54,8 +54,8 @@ function Input(){
                 
                 setSendMail(true)
 
-            } catch{
-                console.log("Error adding entry")
+            } catch(error){
+                console.error(error)
                 
             }
             e.target.reset()

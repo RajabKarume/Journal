@@ -53,15 +53,23 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
-exports.getEntries = functions.pubsub.schedule("every day 23:00")
-    .onRun( async (context) => {
-      const entrieRef = admin.firestore().collection("entries");
-      const entriesSnapshot = await entrieRef.get();
-      console.log(entriesSnapshot.size);
-      const entries = entriesSnapshot.docs.map((doc) => (
-        doc.data()));
-      console.log(entries);
-    });
+exports.getEntries = functions.https.onRequest( async (res, req) => {
+  const db = admin.firestore();
+  db.collection("entries")
+      .get()
+      .then((querySnapshot) => {
+        const entries = [];
+        querySnapshot.forEach((doc) => {
+          entries.push(doc.data());
+        });
+        res.json(entries);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send(error);
+      });
+});
+
 exports.deleteCollection = functions.pubsub.schedule("every day 00:00")
     .onRun(async (context) => {
       const collectionRef = admin.firestore().collection("entries");
