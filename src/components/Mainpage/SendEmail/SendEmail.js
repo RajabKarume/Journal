@@ -1,12 +1,12 @@
 import React from "react";
 import './SendEmail.css'
 
-function SendEmail({ sendMail, setSendMail}){
+function SendEmail({ sendMail, setSendMail, message}){
 
     return (sendMail) ? (
         <div className="popup">
             <div className="popup-container">
-              <p>Entry submited successfully</p>
+              <p>{message}</p>
               <button onClick={()=>setSendMail(false)}>OK</button>
             </div>
         </div>
