@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db} from '../../firebaseConfig';
 import { doc, setDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom';
-
+import Button from '../Button/Button';
 
 function SignUp(){
     
@@ -13,15 +13,13 @@ function SignUp(){
     const [displayName, setDisplayName] = useState("")
     const [err, setErr] = useState(false)
     const navigate = useNavigate()
-    const [signUpButton, setSignUpButton] = useState(false)
+    const [signUpButton, setSignUpButton] = useState("Sign In")
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
-        setSignUpButton(true)
-        
+        setSignUpButton("Signing In...")
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password)
-            
             try{
                 console.log(res.user.uid)
                 console.log(displayName)
@@ -29,7 +27,6 @@ function SignUp(){
                 updateProfile(res.user,{
                     displayName
                 })
-                
                 setDoc(doc(db, "users", res.user.uid),{
                     uid: res.user.uid,
                     email,
@@ -37,7 +34,6 @@ function SignUp(){
                 })
                 console.log("db done")
                 navigate('/login')
-
             } catch(err){
                 console.log("db error")
             }
@@ -45,7 +41,7 @@ function SignUp(){
             setErr(true)
             console.log("error")
         }
-        setSignUpButton(false)
+        setSignUpButton("Sign In")
     } 
 
     return(
@@ -63,15 +59,16 @@ function SignUp(){
                         <h3>Password</h3>
                         <input type='password' placeholder='Enter your password' value={password} onChange={(e)=> setPassword(e.target.value)} className='login-input' />
                         <br/>
-                        <button className='login-button'>{signUpButton?"Signing up":"Sign up"} </button>
+                        <Button buttonText={signUpButton} />
                         <br/>
-                        {err? <p>Sign error </p>: <p></p>}
                     </form>
+                </div>
+                <div>
+                {err? <p>Sign Up error </p>: <p></p>}
                 </div>
                 <div className='span-div'>
                     <span > <Link to='/login'>LogIn to your account</Link> </span>
                 </div>
-                
             </div>
         </div>
     )

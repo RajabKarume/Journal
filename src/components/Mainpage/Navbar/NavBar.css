@@ -3,31 +3,19 @@
     align-items: center;
     justify-content: space-between;
     height: 8vh;
-    background-color: #9e0101;
+    background-image: url("https://i.ibb.co/ZSbG7rb/circle-scatter-haikei.png");
     position: sticky;
     top: 0;
+    color: #fff;
 }
 .appname{
     margin-left: 2%;
-}
-.logout-button{
-    margin-right: 2%;
-}
-button{
-    height: 5vh;
-    width: 10vw;
-    font-size: 20px;
-    background-color: rgb(143, 143, 2);
-    cursor: pointer;
 }
 @media(max-width:1000px){
     .navbar-div{
         font-size: 10px;
     }
-    .logout-button{
-        width: 22%;
-    }
-    button{
+    Button{
         width: 100%;
         border-radius: 40px;
         font-size: 15px;

@@ -13,17 +13,18 @@
     position: relative;
     padding: 32px;
     width: 50%;
-    background-color: #fff;
-    height: 30vh;
+    background-image: url("https://i.ibb.co/ZSbG7rb/circle-scatter-haikei.png");
+    height: 34vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     font-size: 40px;
+    border-radius: 20px;
+    color: #fff;
 }
-.mail-button{
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    max-width: 40%;
+@media(max-width:1000px){
+    .popup-container{
+        height: 40%;
+        width: 60%;
+    }
 }
