@@ -21,10 +21,11 @@ function Input(){
             setSend(true)
 
             try{
-                const response = await fetch("https://us-central1-journal-6a69e.cloudfunctions.net/addEntries", {
+                console.log(`${email}, ${newEntry}`)
+                const response = await fetch('https://us-central1-journal-6a69e.cloudfunctions.net/addEntries', {
                     method: "POST",
                     headers: {
-                      "Content-Type": "application/json"
+                      "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ email, newEntry})
                   });
@@ -37,7 +38,7 @@ function Input(){
 
             } catch(error){
                 setSendMail(true)
-                setMessage("Could not submit entry. Try again later")
+                setMessage(`Could not submit entry. ${error}`)
                 console.error(error)
                 
             }

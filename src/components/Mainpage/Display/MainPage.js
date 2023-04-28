@@ -22,7 +22,7 @@ function MainPage(){
            
         })
         console.log(userAuth)
-    },[])
+    },[userAuth])
 
     return(
         <div className="mainpage">
