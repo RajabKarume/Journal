@@ -64,12 +64,9 @@ h3{
         height: 100vh;
         width: 100vw;
     }
-    .login-h1{
-        padding-top: 10%;
-    }
     .login-container{
         width: 80%;
-        height: 80%;
+        height: 90%;
     }
     .form-div{
         width: 80%;
@@ -78,14 +75,11 @@ h3{
         align-items: center;
         justify-content: center;
     }
-    .login-input{
-        width: 100%;
-
+    h3{
+        font-size: 18px;
     }
-    .login-button{
-        width: 100%;
-    }
-    .span-div{
-        margin-top: 10%;
+    h1{
+        font-size: 25px;
+        padding-bottom: 10%;
     }
 }
