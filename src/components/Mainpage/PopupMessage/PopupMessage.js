@@ -1,5 +1,6 @@
 import React from "react";
 import './PopupMessage.css'
+import Button from "../../Button/Button";
 
 function PopupMessage({ sendMail, setSendMail, message}){
 
@@ -7,7 +8,7 @@ function PopupMessage({ sendMail, setSendMail, message}){
         <div className="popup">
             <div className="popup-container">
               <p>{message}</p>
-              <button onClick={()=>setSendMail(false)}>OK</button>
+              <Button handleClick={()=>setSendMail(false)} buttonText={"Ok"} />
             </div>
         </div>
     ):''
