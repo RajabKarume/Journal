@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
 import './Input.css'
 import { AuthContext } from "../../Auth/WithAuth";
-import SendEmail from "../SendEmail/PopupMessage";
+import SendEmail from "../PopupMessage/PopupMessage";
 import 'firebase/functions'
+import Button from "../../Button/Button";
 
 function Input(){
 
     const {currentUser} = useContext(AuthContext)
     const [ entry, setEntry ] = useState('')
-    const [send, setSend] = useState(false)
+    const [send, setSend] = useState("Send")
     const [sendMail, setSendMail] = useState(false)
     const email = currentUser.email
     const [message, setMessage] = useState("")
@@ -18,7 +19,7 @@ function Input(){
         if (entry !==''){
             e.preventDefault()
             const newEntry = [...entry].join("")
-            setSend(true)
+            setSend("Sending")
             try{
                 console.log(`${email}, ${newEntry}`)
                 const response = await fetch('https://us-central1-journal-6a69e.cloudfunctions.net/addEntries', {
@@ -41,7 +42,7 @@ function Input(){
             }
             e.target.reset()
             setEntry('')
-            setSend(false)
+            setSend("Send")
         }else{
             alert('Entry cannot be blank')
         }
@@ -53,7 +54,7 @@ function Input(){
                 <h2>Journal entry</h2>
                 <input type='text' placeholder="Enter your Journal " className="message-input" value={entry} onChange={(e)=> setEntry(e.target.value)} />
                 <br/>
-                <button  className="send-button">{send?"Sending":'Send'}</button>
+                <Button buttonText={send} />
             </form>
                 <SendEmail 
                 setSendMail={setSendMail} 

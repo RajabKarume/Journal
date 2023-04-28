@@ -15,10 +15,7 @@
     .navbar-div{
         font-size: 10px;
     }
-    .logout-button{
-        width: 22%;
-    }
-    button{
+    Button{
         width: 100%;
         border-radius: 40px;
         font-size: 15px;

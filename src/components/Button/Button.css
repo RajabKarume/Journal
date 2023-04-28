@@ -7,8 +7,8 @@
 }
 .my-button{
     background-image: url("https://i.ibb.co/ZSbG7rb/circle-scatter-haikei.png");
-    height: 3rem;
-    width: 10rem;
+    min-height: 3rem;
+    min-width: 10rem;
     font-size: 20px;
     color: #A7233A;
     font-weight: 1000;
