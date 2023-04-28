@@ -3,9 +3,10 @@
     align-items: center;
     justify-content: space-between;
     height: 8vh;
-    background-color: #9e0101;
+    background-image: url("https://i.ibb.co/ZSbG7rb/circle-scatter-haikei.png");
     position: sticky;
     top: 0;
+    color: #fff;
 }
 .appname{
     margin-left: 2%;
