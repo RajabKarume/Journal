@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import './MainPage.css'
 import NavBar from '../Navbar/NavBar'
 import Input from "../Input/Input";
-import Card from "../Card/Card";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import Clock from "../Clock/Clock";
@@ -33,31 +32,6 @@ function MainPage(){
                 </div>
                 <div className="input">
                     <Input />
-                </div>
-                <div className="card">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ import LogIn from './components/Login/LogIn';
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from './components/Auth/WithAuth';
+import Button from './components/Button/Button';
 
 
 function App() {
@@ -24,13 +25,14 @@ function App() {
   }
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path={"/login"} element={<LogIn/>}  />
           <Route path={"/signup"} element={<SignUp/>}  />
           <Route path={'/'} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Button />
       
     </div>
   );

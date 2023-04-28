@@ -5,7 +5,6 @@ import { auth, db} from '../../firebaseConfig';
 import { doc, setDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom';
 
-
 function SignUp(){
     
     const [email, setEmail] = useState("")
@@ -18,10 +17,8 @@ function SignUp(){
     const handleSubmit = async (e)=> {
         e.preventDefault()
         setSignUpButton(true)
-        
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password)
-            
             try{
                 console.log(res.user.uid)
                 console.log(displayName)
@@ -29,7 +26,6 @@ function SignUp(){
                 updateProfile(res.user,{
                     displayName
                 })
-                
                 setDoc(doc(db, "users", res.user.uid),{
                     uid: res.user.uid,
                     email,
@@ -37,7 +33,6 @@ function SignUp(){
                 })
                 console.log("db done")
                 navigate('/login')
-
             } catch(err){
                 console.log("db error")
             }
@@ -71,7 +66,6 @@ function SignUp(){
                 <div className='span-div'>
                     <span > <Link to='/login'>LogIn to your account</Link> </span>
                 </div>
-                
             </div>
         </div>
     )

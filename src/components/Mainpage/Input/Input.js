@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import './Input.css'
 import { AuthContext } from "../../Auth/WithAuth";
-import SendEmail from "../SendEmail/SendEmail";
+import SendEmail from "../SendEmail/PopupMessage";
 import 'firebase/functions'
 
 function Input(){
@@ -19,7 +19,6 @@ function Input(){
             e.preventDefault()
             const newEntry = [...entry].join("")
             setSend(true)
-
             try{
                 console.log(`${email}, ${newEntry}`)
                 const response = await fetch('https://us-central1-journal-6a69e.cloudfunctions.net/addEntries', {
@@ -35,12 +34,10 @@ function Input(){
                 
                 setSendMail(true)
                 setMessage("Entry submited successfully")
-
             } catch(error){
                 setSendMail(true)
                 setMessage(`Could not submit entry. ${error}`)
-                console.error(error)
-                
+                console.error(error) 
             }
             e.target.reset()
             setEntry('')
@@ -63,7 +60,6 @@ function Input(){
                 sendMail={sendMail}
                 message={message}
                 />
-                
         </div>
     )
 }

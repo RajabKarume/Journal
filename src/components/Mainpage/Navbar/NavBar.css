@@ -10,16 +10,6 @@
 .appname{
     margin-left: 2%;
 }
-.logout-button{
-    margin-right: 2%;
-}
-button{
-    height: 5vh;
-    width: 10vw;
-    font-size: 20px;
-    background-color: rgb(143, 143, 2);
-    cursor: pointer;
-}
 @media(max-width:1000px){
     .navbar-div{
         font-size: 10px;

@@ -1,7 +1,7 @@
 import React from "react";
-import './SendEmail.css'
+import './PopupMessage.css'
 
-function SendEmail({ sendMail, setSendMail, message}){
+function PopupMessage({ sendMail, setSendMail, message}){
 
     return (sendMail) ? (
         <div className="popup">
@@ -13,4 +13,4 @@ function SendEmail({ sendMail, setSendMail, message}){
     ):''
 }
 
-export default SendEmail
+export default PopupMessage

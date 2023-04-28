@@ -1,0 +1,21 @@
+.my-button{
+    background-image: url("https://i.ibb.co/ZSbG7rb/circle-scatter-haikei.png");
+    height: 3rem;
+    width: 10rem;
+    font-size: 20px;
+    color: #A7233A;
+    font-weight: 1000;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.my-button:hover{
+    transition: 0.5s;
+    font-size: 22px;
+    height: 3.4rem;
+    width: 10.4rem;
+}

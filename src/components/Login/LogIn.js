@@ -15,22 +15,17 @@ function LogIn(){
     const handleSubmit = async (e)=>{
         e.preventDefault()
         setLogin(true)
-
-
         try{
             await signInWithEmailAndPassword(auth, email, password)
             console.log("login successful")
             navigate("/")
-            
-            
         } catch(err){
             console.log("login error")
             setErr(true)
         }
         setLogin(false)
-         
     }
-
+    
     return(
         <div className='main-div'> 
             <div className='login-container'>

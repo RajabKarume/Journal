@@ -20,10 +20,5 @@
     align-items: center;
     justify-content: center;
     font-size: 40px;
-}
-.mail-button{
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    max-width: 40%;
+    border-radius: 20px;
 }
